@@ -116,8 +116,10 @@ class Madao(Frame):
         begin = time.time()
         data = []
         try:
-            songUrl = url.split('/')
-            songmid = 'C100' + songUrl[-1].rstrip('.html\n')
+            # https://y.qq.com/n/yqq/song/003tJCdP4QXEe8.html?ADTAG=baiduald&play=1
+            songmid = (url.split('/'))[-1]
+            songmid = songmid[:songmid.find(".html")]
+            songmid = 'C100' + songmid
             url_temp = 'http://ws.stream.qqmusic.qq.com/{}.m4a?fromtag=38'
             url = url_temp.format(songmid)
             sou = request.urlopen(url)
